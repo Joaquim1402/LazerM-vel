@@ -1,77 +1,318 @@
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LazerMóvel - Mobilidade com Dignidade</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        :root {
+            --primary-color: #2e7d32;
+            --primary-light: #4CAF50;
+            --primary-dark: #1b5e20;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
+            box-sizing: border-box;
         }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-gray);
+        }
+
+        /* Header */
         header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 20px;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+            color: var(--white);
+            padding: 2rem 1rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+            opacity: 0.3;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
         nav {
-            text-align: center;
-            background-color: #fff;
-            padding: 10px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
         }
 
         nav a {
-            margin: 0 15px;
+            color: var(--primary-dark);
             text-decoration: none;
-            color: #4CAF50;
-            font-weight: bold;
+            font-weight: 600;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
         }
 
         section {
-            padding: 30px 20px;
-            max-width: 960px;
-            margin: auto;
+            margin-bottom: 3rem;
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
 
-        .highlight {
-            background-color: #e8f5e9;
-            padding: 20px;
-            border-left: 5px solid #4CAF50;
-            margin: 30px 0;
-        }
-
-        footer {
-            text-align: center;
-            background-color: #333;
-            color: white;
-            padding: 20px;
-        }
-
-        .cta {
-            display: inline-block;
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            margin-top: 15px;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        ul {
-            padding-left: 20px;
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         h2 {
-            color: #2e7d32;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Highlight Box */
+        .highlight {
+            background-color: rgba(76, 175, 80, 0.1);
+            border-left: 5px solid var(--primary-color);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            list-style-type: none;
+            padding-left: 1.5rem;
+        }
+
+        li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        /* CTA Button */
+        .cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            margin-top: 1rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .social-links {
+            margin: 1rem 0;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                padding: 1rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .highlight {
+                padding: 1.5rem;
+            }
+
+            .cta {
+                width: 100%;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -82,51 +323,124 @@
     </header>
 
     <nav>
-        <a href="#produto">Produto</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#contato">Contato</a>
+        <div class="nav-container">
+            <button class="mobile-menu-btn" id="menuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="#produto">Produto</a>
+                <a href="#sobre">Sobre</a>
+                <a href="#contato">Contato</a>
+            </div>
+        </div>
     </nav>
 
-    <section>
-        <h2>Por que a mobilidade importa?</h2>
-        <p>A limitação de acesso a áreas de lazer afeta diretamente a saúde física, mental e social da população idosa. Promover mobilidade é garantir inclusão, autonomia e qualidade de vida.</p>
+    <main class="container">
+        <section>
+            <h2>Por que a mobilidade importa?</h2>
+            <p>A limitação de acesso a áreas de lazer afeta diretamente a saúde física, mental e social da população idosa. Promover mobilidade é garantir inclusão, autonomia e qualidade de vida.</p>
 
-        <div class="highlight">
-            <h3>Conheça o LazerMóvel</h3>
-            <p>O LazerMóvel é um veículo elétrico compacto, seguro e dobrável, desenvolvido para permitir que idosos se desloquem até praças, centros culturais, feiras e outras áreas de convivência com autonomia e praticidade.</p>
-            <ul>
-                <li>Autonomia de até 15 km por carga</li>
-                <li>Estrutura leve e dobrável</li>
-                <li>Velocidade limitada para segurança</li>
-                <li>Espaço para objetos pessoais</li>
-                <li>Fácil de carregar e armazenar</li>
-            </ul>
-            <a class="cta" href="#produto">Saiba Mais</a>
-        </div>
-    </section>
+            <div class="highlight">
+                <h3>Conheça o LazerMóvel</h3>
+                <p>O LazerMóvel é um veículo elétrico compacto, seguro e dobrável, desenvolvido para permitir que idosos se desloquem até praças, centros culturais, feiras e outras áreas de convivência com autonomia e praticidade.</p>
+                <ul>
+                    <li>Autonomia de até 15 km por carga</li>
+                    <li>Estrutura leve e dobrável</li>
+                    <li>Velocidade limitada para segurança</li>
+                    <li>Espaço para objetos pessoais</li>
+                    <li>Fácil de carregar e armazenar</li>
+                </ul>
+                <a class="cta" href="#produto">Saiba Mais</a>
+            </div>
+        </section>
 
-    <section id="produto">
-        <h2>Produto: LazerMóvel</h2>
-        <p>Desenvolvido com foco em acessibilidade e conforto, o LazerMóvel é ideal para ambientes urbanos e deslocamentos curtos. Seu design funcional atende às normas de segurança e usabilidade para o público da terceira idade.</p>
-        <p>Com dimensões compactas e sistema dobrável, o LazerMóvel pode ser transportado com facilidade em automóveis ou armazenado em pequenos espaços. É a solução prática para o acesso frequente a espaços de lazer e convivência.</p>
-    </section>
+        <section id="produto">
+            <h2>Produto: LazerMóvel</h2>
+            <p>Desenvolvido com foco em acessibilidade e conforto, o LazerMóvel é ideal para ambientes urbanos e deslocamentos curtos. Seu design funcional atende às normas de segurança e usabilidade para o público da terceira idade.</p>
+            <p>Com dimensões compactas e sistema dobrável, o LazerMóvel pode ser transportado com facilidade em automóveis ou armazenado em pequenos espaços. É a solução prática para o acesso frequente a espaços de lazer e convivência.</p>
+        </section>
 
-    <section id="sobre">
-        <h2>Sobre Nós</h2>
-        <p>Somos uma startup comprometida com a inovação social e tecnológica, focada em desenvolver soluções práticas para a mobilidade da terceira idade.</p>
-        <p>Nosso objetivo é reduzir barreiras urbanas e promover a inclusão, garantindo mais qualidade de vida e independência para os idosos. O LazerMóvel é o primeiro de uma linha de produtos pensados com base em acessibilidade, segurança e autonomia.</p>
-    </section>
+        <section id="sobre">
+            <h2>Sobre Nós</h2>
+            <p>Somos uma startup comprometida com a inovação social e tecnológica, focada em desenvolver soluções práticas para a mobilidade da terceira idade.</p>
+            <p>Nosso objetivo é reduzir barreiras urbanas e promover a inclusão, garantindo mais qualidade de vida e independência para os idosos. O LazerMóvel é o primeiro de uma linha de produtos pensados com base em acessibilidade, segurança e autonomia.</p>
+        </section>
 
-    <section id="contato">
-        <h2>Contato</h2>
-        <p>Entre em contato conosco para dúvidas, parcerias, sugestões ou para solicitar uma demonstração do LazerMóvel.</p>
-        <p><strong>Email:</strong> contato@lazermovel.com.br<br>
-        <strong>WhatsApp:</strong> (81) 9 9999-9999</p>
-    </section>
+        <section id="contato">
+            <h2>Contato</h2>
+            <p>Entre em contato conosco para dúvidas, parcerias, sugestões ou para solicitar uma demonstração do LazerMóvel.</p>
+            <p><strong><i class="fas fa-envelope"></i> Email:</strong> contato@lazermovel.com.br</p>
+            <p><strong><i class="fas fa-phone-alt"></i> WhatsApp:</strong> (81) 9 9999-9999</p>
+            <p><strong><i class="fas fa-map-marker-alt"></i> Endereço:</strong> Rua da Inovação, 123 - Recife/PE</p>
+            
+            <div style="margin-top: 2rem;">
+                <a class="cta" href="mailto:contato@lazermovel.com.br">
+                    <i class="fas fa-paper-plane"></i> Enviar Mensagem
+                </a>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        &copy; 2025 LazerMóvel. Trabalho desenvolvido por estudantes do 2 TETb.
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>&copy; 2025 LazerMóvel. Trabalho desenvolvido por estudantes do 2 TETb.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Todos os direitos reservados.</p>
+        </div>
     </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Add active class to current section in navigation
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
-
